@@ -121,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#사용자 지정 사용자 모델을 구성
+AUTH_USER_MODEL='profiles_api.UserProfile'

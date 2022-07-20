@@ -22,10 +22,13 @@ git clone $PROJECT_GIT_URL $PROJECT_BASE_PATH/RestAPI-Beginner
 mkdir -p $VIRTUALENV_BASE_PATH
 python3 -m venv $VIRTUALENV_BASE_PATH/profiles_api
 
-$VIRTUALENV_BASE_PATH/profiles_api/bin/pip install -r $PROJECT_BASE_PATH/RestAPI-Beginner/requirements.txt
+/usr/local/virtualenvs/profiles_api/bin/pip install -r $PROJECT_BASE_PATH/RestAPI-Beginner/requirements.txt
+/usr/local/virtualenvs/profiles_api/bin/pip install uwsgi
 
 # Run migrations
-cd $PROJECT_BASE_PATH/RestAPI-Beginner/src
+/usr/local/virtualenvs/profiles_api/bin/python manage.py migrate
+/usr/local/virtualenvs/profiles_api/bin/python manage.py collectstatic --noinput
+supervisorctl restart profiles_api
 
 # Setup Supervisor to run our uwsgi process.
 cp $PROJECT_BASE_PATH/RestAPI-Beginner/deploy_v2/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf

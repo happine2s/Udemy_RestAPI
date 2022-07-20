@@ -26,9 +26,7 @@ python3 -m venv $VIRTUALENV_BASE_PATH/profiles_api
 /usr/local/virtualenvs/profiles_api/bin/pip install uwsgi
 
 # Run migrations
-/usr/local/virtualenvs/profiles_api/bin/python manage.py migrate
-/usr/local/virtualenvs/profiles_api/bin/python manage.py collectstatic --noinput
-supervisorctl restart profiles_api
+cd $PROJECT_BASE_PATH/RestAPI-Beginner
 
 # Setup Supervisor to run our uwsgi process.
 cp $PROJECT_BASE_PATH/RestAPI-Beginner/deploy_v2/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf

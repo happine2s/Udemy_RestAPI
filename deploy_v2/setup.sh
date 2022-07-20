@@ -28,13 +28,13 @@ $VIRTUALENV_BASE_PATH/profiles_api/bin/pip install -r $PROJECT_BASE_PATH/RestAPI
 cd $PROJECT_BASE_PATH/RestAPI-Beginner/src
 
 # Setup Supervisor to run our uwsgi process.
-cp $PROJECT_BASE_PATH/RestAPI-Beginner/deploy/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf
+cp $PROJECT_BASE_PATH/RestAPI-Beginner/deploy_v2/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf
 supervisorctl reread
 supervisorctl update
 supervisorctl restart profiles_api
 
 # Setup nginx to make our application accessible.
-cp $PROJECT_BASE_PATH/RestAPI-Beginner/deploy/nginx_profiles_api.conf /etc/nginx/sites-available/profiles_api.conf
+cp $PROJECT_BASE_PATH/RestAPI-Beginner/deploy_v2/nginx_profiles_api.conf /etc/nginx/sites-available/profiles_api.conf
 rm /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/profiles_api.conf /etc/nginx/sites-enabled/profiles_api.conf
 systemctl restart nginx.service
